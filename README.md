@@ -12,7 +12,7 @@ Genrating training data was done by using [this RL agent](https://github.com/xtm
 ### Install requirements 
 ```
 pip install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
-```s
+```
 
 ### Training
 In order to train the convolutional autoencoder:
