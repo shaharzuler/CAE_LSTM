@@ -5,6 +5,7 @@ The simulation environment and the sample data are taken from [OpenAI Gym Car Ra
 
 Genrating training data was done by using [this RL agent](https://github.com/xtma/pytorch_car_caring).
 
+A small sample of this dataset is provided under the "sample_dataset" directory.
 ### End to end continuous inference:
 ![](infer_all.gif)
 
@@ -27,15 +28,15 @@ python train_lstm.py -img_size "96,96,1" -data_root_folder "sample_dataset"
 ### Inference
 In order to perform an end-to-end continuous inference:
 ```
-python test_CAE_LSTM.py -img_size "96,96,1" -root_folder "sample_dataset" -trained_encoder_path "sample_dataset/autoencoder_logs/lightning_logs/checkpoints/epoch=132-step=5186.ckpt" -trained_lstm_path "sample_dataset/lstm_logs/lightning_logs/version_1/checkpoints/epoch=0-step=1084.ckpt"
+python infer_CAE_LSTM.py -img_size "96,96,1" -root_folder "sample_dataset" -trained_encoder_path "sample_dataset/autoencoder_logs/lightning_logs/version_0/checkpoints/epoch=132-step=5186.ckpt" -trained_lstm_path "sample_dataset/lstm_logs/lightning_logs/version_1/checkpoints/epoch=0-step=1084.ckpt"
 ```
 In order to visualize inference of the convolutional autoencoder:
 ```
-python inference_utils/infer_autoencoder.py -img_size "96,96,1" -root_folder "sample_dataset" -trained_encoder_path "sample_dataset/autoencoder_logs/checkpoints/epoch=132-step=5186.ckpt"
+python inference_utils/infer_autoencoder.py -img_size "96,96,1" -root_folder "sample_dataset" -trained_encoder_path "sample_dataset/autoencoder_logs/lightning_logs/version_0/checkpoints/epoch=132-step=5186.ckpt"
 ```
 In order to check inference of the LSTM:
 ```
-python inference_utils/infer_lstm.py -img_size "96,96,1" -root_folder "sample_dataset" -trained_encoder_path "sample_dataset/autoencoder_logs/lightning_logs/checkpoints/epoch=132-step=5186.ckpt" -trained_lstm_path "sample_dataset/lstm_logs/lightning_logs/version_1/checkpoints/epoch=0-step=1084.ckpt"
+python inference_utils/infer_lstm.py -img_size "96,96,1" -root_folder "sample_dataset" -trained_encoder_path "sample_dataset/autoencoder_logs/lightning_logs/version_0/checkpoints/epoch=132-step=5186.ckpt" -trained_lstm_path "sample_dataset/lstm_logs/lightning_logs/version_1/checkpoints/epoch=0-step=1084.ckpt"
 ```
 
 
