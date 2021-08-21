@@ -26,6 +26,8 @@ class AutoEncoderDataset(Dataset):
         filenames = self.train_filenames if self.phase=="train" else self.val_filenames
         sample_path = os.path.join(self.path, filenames[idx])
         img = cv2.imread(sample_path)
+        if img is None:
+            raise ValueError("opencv couldn't open image stored in {}".format(sample_path), sample_path)
         if self.C == 1:
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.resize(img, (self.H, self.W))

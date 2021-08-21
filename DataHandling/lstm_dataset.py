@@ -62,6 +62,8 @@ class LSTMDataset(Dataset):
 
     def get_preprocess_image(self, path: str) -> torch.tensor:
         img = cv2.imread(path)
+        if img is None:
+            raise ValueError("opencv couldn't open image stored in {}".format(path), path)
         if self.C == 1:
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.resize(img, (self.H, self.W))

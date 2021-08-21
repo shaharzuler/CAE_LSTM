@@ -12,17 +12,17 @@ from models.CAE_LSTM_AutoEncoder import CAELSTMAutoEncoder
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-img_size', dest="img_size", type=str, help='A tuple wrapped as an integer in the format "H,W,C"')
-parser.add_argument('-data_root_folder', dest='data_root_folder', help='Path to root folder where data and experiments results are located')
+parser.add_argument('-root_folder', dest='root_folder', help='Path to root folder where data and experiments results are located')
 parser.add_argument('-trained_encoder_path', dest='trained_encoder_path', default=None,
                     help='Path to trained autoencoder checkpoints.')
 parser.add_argument('-dataloader_path', dest='dataloader_path', type=str, default=None,
-                    help='path to dataloader pkl file. If None, default location will be data_root_folder/dataloaders/autoencoder/val_dl.pkl')
+                    help='path to dataloader pkl file. If None, default location will be root_folder/dataloaders/autoencoder/val_dl.pkl')
 
 args = parser.parse_args()
 
-def load_dataset(data_root_folder, dataloader_path):
+def load_dataset(root_folder, dataloader_path):
     if dataloader_path is None:
-        dataloader_path = os.path.join(data_root_folder, "dataloaders", "autoencoder", "val_dl.pkl")
+        dataloader_path = os.path.join(root_folder, "dataloaders", "autoencoder", "val_dl.pkl")
     with open(dataloader_path, "rb") as fp:
         pred_dl = pickle.load(fp)
     return pred_dl.dataset
@@ -62,7 +62,7 @@ def plot(num_images, imgs):
 
 
 img_size = tuple([int(i) for i in args.img_size.split(",")])
-val_dataset = load_dataset(args.data_root_folder, args.dataloader_path)
+val_dataset = load_dataset(args.root_folder, args.dataloader_path)
 model = load_model(img_size, args.trained_encoder_path)
 num_images = 3
 imgs = encode_random_images(num_images, val_dataset, model)

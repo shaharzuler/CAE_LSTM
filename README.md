@@ -18,11 +18,11 @@ pip install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable
 ### Training
 In order to train the convolutional autoencoder:
 ```
-python train_autoencoder.py -img_size "96,96,1" -data_root_folder "sample_dataset"
+python train_autoencoder.py -img_size "96,96,1" -root_folder "sample_dataset"
 ```
 In order to train the LSTM:
 ```
-python train_lstm.py -img_size "96,96,1" -data_root_folder "sample_dataset"
+python train_lstm.py -img_size "96,96,1" -root_folder "sample_dataset"
 ```
 
 ### Inference

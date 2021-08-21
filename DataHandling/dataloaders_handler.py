@@ -24,7 +24,6 @@ class DataloadersHandler:
         if trained_encoder_path is None:
             trained_encoder_path = self.get_trained_autoencoder_path(self.data_root_folder)
         train_dataset = LSTMDataset(self.csv_path, 4, "train", img_size=img_size, trained_encoder_path=trained_encoder_path)
-
         val_dataset = LSTMDataset(self.csv_path, 4, "val", img_size=img_size, trained_encoder_path=trained_encoder_path)
 
         train_loader = DataLoader(train_dataset, batch_size=8, num_workers=8)
